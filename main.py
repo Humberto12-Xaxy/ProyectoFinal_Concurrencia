@@ -23,7 +23,7 @@ class mainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.pilotos = ['Checo', 'Mazepin', 'Shumager']
+        self.pilotos = [['Checo', True], ['Mazepin', True], ['Shumager', True]]
 
         self.show()
 
