@@ -35,18 +35,24 @@ class Auto(threading.Thread):
         self.estado = 'En pits'
 
     def run(self):
+        global win
+        win = False
         pilotos = [['Checo', False], ['Mazepin', False], ['Shumager', False]]
         aleatorio = []
-        while self.vuelta < 5:
+        while self.vuelta <= 5 and win == False:
             aleatorio = random.choice(pilotos)
             for j in range(len(pilotos)):
                 if aleatorio == pilotos[j]:
-                    pilotos[j][1] = True           
-
-            print(aleatorio)
-            # self.vueltas(pilotos[self.pos][1])
-        pilotos = [['Checo', False], ['Mazepin', False], ['Shumager', False]]
+                    pilotos[j][1] = True          
+            self.vueltas(pilotos[self.pos][1])
             
+            if self.vuelta == 5:
+                win = True
+                print('El ganador es: ', self.piloto)
+
+            pilotos = [['Checo', False], ['Mazepin', False], ['Shumager', False]]
+
+        
 
 if __name__ == '__main__':
     pilotos = [['Checo', False], ['Mazepin', False], ['Shumager', False]]
@@ -54,8 +60,14 @@ if __name__ == '__main__':
     carro1 = Auto(pilotos[0][0], 0)
     carro2 = Auto(pilotos[1][0], 1)
     carro3 = Auto(pilotos[2][0], 2)
+    print(carro1.is_alive())
     carro1.start()
     carro2.start()
     carro3.start() 
-
+    
+    print(carro1.is_alive())
+    
+    carro1.join()
+    carro2.join()
+    carro3.join()
         
