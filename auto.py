@@ -17,7 +17,7 @@ class Auto(threading.Thread):
         self.vuelt = vueltas
     
     def vueltas(self, band):
-
+        
         aleatorioContador = 1    
         aleatorioVuelta = random.choice([10,20,30,50])
         aleatorioTiempo = random.choice([0.02,0.01,0.03])
@@ -67,6 +67,7 @@ class Auto(threading.Thread):
                 win = True
                 self.ganador.setText(f'El ganador es {self.piloto}')
                 print('El ganador es: ', self.piloto)
+                
                 break
             
             pilotos = [['Checo', False], ['Mazepin', False], ['Shumager', False]]
